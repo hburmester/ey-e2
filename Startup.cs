@@ -23,6 +23,16 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://127.0.0.1:3000/")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             
             // Add DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -47,6 +57,8 @@ namespace backend
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseCors();
 
             app.UseRouting();
 
