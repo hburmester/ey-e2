@@ -15,14 +15,14 @@ public class ProveedoresController : ControllerBase
         _context = context;
     }
 
-    // GET: api/Proveedores
+    // GET: Proveedores
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Proveedor>>> GetProveedores()
     {
-        return await _context.Proveedores.OrderBy(p => p.UltimaEdicion).ToListAsync();
+        return await _context.Proveedores.OrderByDescending(p => p.UltimaEdicion).ToListAsync();
     }
 
-    // POST: api/Proveedores
+    // POST: Proveedores
     [HttpPost]
     public async Task<ActionResult<Proveedor>> PostProveedor(Proveedor proveedor)
     {
@@ -37,7 +37,7 @@ public class ProveedoresController : ControllerBase
         return CreatedAtAction("GetProveedor", new { id = proveedor.Id }, proveedor);
     }
 
-    // PUT: api/Proveedores/5
+    // PUT: Proveedores/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutProveedor(int id, Proveedor proveedor)
     {
@@ -67,7 +67,7 @@ public class ProveedoresController : ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/Proveedores/5
+    // DELETE: Proveedores/5
     [HttpDelete("{id}")]
     public async Task<ActionResult<Proveedor>> DeleteProveedor(int id)
     {
